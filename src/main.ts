@@ -9,6 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new validate())
   app.useGlobalInterceptors(new TransformInterceptor())
   app.setGlobalPrefix("api")
+  app.enableCors()
   app.useStaticAssets("uploads", { prefix: "/uploads" })
   await app.listen(3000);
 }

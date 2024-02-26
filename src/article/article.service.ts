@@ -50,9 +50,13 @@ export class ArticleService {
    * 查找文章
   */
   findOne(id: number) {
-    return this.prisma.article.findFirst({
-      where: { id }
-    })
+    try {
+      return this.prisma.article.findFirst({
+        where: { id }
+      })
+    }catch(e){
+      throw new Error(e)
+    }
   }
 
   /**
@@ -61,7 +65,7 @@ export class ArticleService {
   update(id: number, updateArticleDto: UpdateArticleDto) {
     return this.prisma.article.update({
       where: { id },
-      data: {...updateArticleDto, categoryId: updateArticleDto.categoryId}
+      data: { ...updateArticleDto, categoryId: updateArticleDto.categoryId }
     })
   }
 
