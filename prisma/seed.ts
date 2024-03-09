@@ -1,7 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { Random } from 'mockjs'
 import { hash } from 'argon2'
-import _ from 'lodash'
 
 const prisma = new PrismaClient()
 async function run() {
@@ -24,7 +23,7 @@ async function run() {
       data: {
         title: Random.ctitle(10, 30),
         content: Random.cparagraph(30, 50),
-        categoryId: _.random(1, 5)
+        categoryId: Random.integer(1, 5)
       }
     })
   }
